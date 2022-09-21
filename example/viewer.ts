@@ -1,9 +1,6 @@
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
-import { PointCloudOctree, Potree } from '../src';
-
-// tslint:disable-next-line:no-duplicate-imports
-import * as THREE from 'three';
-// const OrbitControls = require('three-orbit-controls')(THREE);
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Potree, PointCloudOctree } from '../dist';
 
 export class Viewer {
   /**
@@ -57,7 +54,7 @@ export class Viewer {
     this.targetEl = targetEl;
     targetEl.appendChild(this.renderer.domElement);
 
-    // this.cameraControls = new OrbitControls(this.camera, this.targetEl);
+    this.cameraControls = new OrbitControls(this.camera, this.targetEl);
 
     this.resize();
     window.addEventListener('resize', this.resize);

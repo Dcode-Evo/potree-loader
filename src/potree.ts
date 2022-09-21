@@ -159,7 +159,7 @@ export class Potree implements IPotree {
 
       if (isGeometryNode(node) && (!parentNode || isTreeNode(parentNode))) {
         if (node.loaded && loadedToGPUThisFrame < MAX_LOADS_TO_GPU) {
-          node = pointCloud.toTreeNode(node, parentNode);
+          node = pointCloud.toTreeNode(node, <any>parentNode);
           loadedToGPUThisFrame++;
         } else if (!node.failed) {
           if (node.loaded && loadedToGPUThisFrame >= MAX_LOADS_TO_GPU) {
@@ -174,8 +174,8 @@ export class Potree implements IPotree {
       }
 
       if (isTreeNode(node)) {
-        this.updateTreeNodeVisibility(pointCloud, node, visibleNodes);
-        pointCloud.visibleGeometry.push(node.geometryNode);
+        this.updateTreeNodeVisibility(pointCloud, <any>node, visibleNodes);
+        pointCloud.visibleGeometry.push((<any>node).geometryNode);
       }
 
       const halfHeight =
@@ -371,7 +371,7 @@ export class Potree implements IPotree {
 
         // Hide any previously visible nodes. We will later show only the needed ones.
         if (isTreeNode(pointCloud.root)) {
-          pointCloud.hideDescendants(pointCloud?.root?.sceneNode);
+          pointCloud.hideDescendants((<any>pointCloud?.root)?.sceneNode);
         }
 
         for (const boundingBoxNode of pointCloud.boundingBoxNodes) {

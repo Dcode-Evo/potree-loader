@@ -8,7 +8,7 @@ import { PointCloudOctreeGeometryNode } from '../point-cloud-octree-geometry-nod
 import { Version } from '../version';
 import { GetUrlFn, XhrRequest } from './types';
 
-import ClassicWorker from "../workers/binary-decoder.worker.js?worker&inline";
+const ClassicWorker = require('../workers/binary-decoder.worker.js').default;
 
 interface AttributeData {
   attribute: {
@@ -57,7 +57,6 @@ export class BinaryLoader {
     scale,
     xhrRequest,
   }: BinaryLoaderOptions) {
-    console.log([getUrl, version, boundingBox, scale, xhrRequest])
     if (typeof version === 'string') {
       this.version = new Version(version);
     } else {
@@ -167,11 +166,6 @@ export class BinaryLoader {
     if (worker) {
       return worker;
     }
-
-    // return new Worker(
-    //   new URL('../workers/binary-decoder.worker.js', import.meta.url),
-    //   { type: 'module' },
-    // )
     return new ClassicWorker();
   }
 

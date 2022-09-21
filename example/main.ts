@@ -1,9 +1,8 @@
 import { Vector3 } from 'three';
-import { PointCloudOctree } from '../src';
+import { PointCloudOctree } from '../dist';
 import { Viewer } from './viewer';
 
-import "./main.css"
-import { PointCloudMaterial } from '../src/materials';
+import './main.css';
 
 const targetEl = document.createElement('div');
 targetEl.className = 'container';
@@ -33,19 +32,19 @@ unloadBtn.addEventListener('click', () => {
 });
 
 viewer
-.load(
-  'metadata.json',
-  'https://static.thelostmetropolis.org/BigShotCleanV2/',
-)
-.then(pco => {
-  pointCloud = pco;
-  pointCloud.material.size = 1.0;
-  pointCloud.material.shape = 2;
-  pointCloud.material.inputColorEncoding = 1;
-  pointCloud.material.outputColorEncoding = 1;
-  pointCloud.position.set(0, -2, 1)
-  pointCloud.scale.set(.1, .1, .1);
-  viewer.add(pco);
-})
-.catch(err => console.error(err));
+  .load(
+    'metadata.json',
+    'https://static.thelostmetropolis.org/BigShotCleanV2/',
+  )
+  .then(pco => {
+    pointCloud = pco;
+    pointCloud.material.size = 1.0;
+    pointCloud.material.shape = 2;
+    pointCloud.material.inputColorEncoding = 1;
+    pointCloud.material.outputColorEncoding = 1;
+    pointCloud.position.set(0, -2, 1);
+    pointCloud.scale.set(.1, .1, .1);
+    viewer.add(pco);
+  })
+  .catch(err => console.error(err));
 

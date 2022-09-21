@@ -16,8 +16,6 @@ import {
   WebGLRenderer,
   WebGLRenderTarget,
 } from 'three';
-import VertShader from "./shaders/pointcloud.vert"
-import FragShader from './shaders/pointcloud.frag';
 import {
   DEFAULT_HIGHLIGHT_COLOR,
   DEFAULT_MAX_POINT_SIZE,
@@ -34,13 +32,12 @@ import { DEFAULT_CLASSIFICATION } from './classification';
 import { ClipMode, IClipBox } from './clipping';
 import { PointColorType, PointOpacityType, PointShape, PointSizeType, TreeType } from './enums';
 import { SPECTRAL } from './gradients';
-import {
-  generateClassificationTexture,
-  generateDataTexture,
-  generateGradientTexture,
-} from './texture-generation';
+import { generateClassificationTexture, generateDataTexture, generateGradientTexture } from './texture-generation';
 import { IClassification, IGradient, IUniform } from './types';
 import { ColorEncoding } from './color-encoding';
+
+const VertShader = require('./shaders/pointcloud.vert').default;
+const FragShader = require('./shaders/pointcloud.frag').default;
 
 export interface IPointCloudMaterialParameters {
   size: number;
@@ -148,12 +145,12 @@ const CLIP_MODE_DEFS = {
 const INPUT_COLOR_ENCODING = {
   [ColorEncoding.LINEAR]: 'input_color_encoding_linear',
   [ColorEncoding.SRGB]: 'input_color_encoding_sRGB',
-}
+};
 
 const OUTPUT_COLOR_ENCODING = {
   [ColorEncoding.LINEAR]: 'output_color_encoding_linear',
   [ColorEncoding.SRGB]: 'output_color_encoding_sRGB',
-}
+};
 
 export class PointCloudMaterial extends RawShaderMaterial {
   private static helperVec3 = new Vector3();
@@ -424,7 +421,7 @@ export class PointCloudMaterial extends RawShaderMaterial {
     define('MAX_DIR_LIGHTS 0');
 
     if (this.newFormat) {
-      define ('new_format')
+      define('new_format');
     }
 
 
