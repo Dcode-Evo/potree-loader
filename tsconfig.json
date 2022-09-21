@@ -1,25 +1,25 @@
 {
-  // "compileOnSave": false,
+  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./src/",
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "build/declarations",
+    "declarationDir": "dist",
     "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
-    // "noImplicitAny": true,
-    // "noImplicitReturns": true,
-    // "noImplicitThis": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "alwaysStrict": true,
-    "target": "es6",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "alwaysStrict": true,
+    "target": "es2020",
     "experimentalDecorators": true,
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2020", "dom"],
+    "lib": ["es2017", "dom"],
     "plugins": []
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["build", "node_modules"]
+  "exclude": ["node_modules"]
 }
