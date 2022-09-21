@@ -1,0 +1,20 @@
+{
+  "name": "@dcode-evo/potree-loader",
+  "description": "WebGL point cloud viewer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dcode-Evo/potree-loader.git",
+    "directory": "@dcode-evo/potree-loader"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "license": "BSD-2-CLAUSE",
+  "main": "potree.js",
+  "module": "potree.js",
+  "types": "*.d.ts",
+  "peerDependencies": {
+    "three": "^0.142.0",
+    "three-orbit-controls": "^82.1.0"
+  }
+}
