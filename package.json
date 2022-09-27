@@ -1,7 +1,7 @@
 {
   "name": "@dcode-evo/potree-loader",
-  "version": "1.10.4",
-  "description": "WebGL point cloud viewer",
+  "version": "1.10.5",
+  "description": "WebGL point cloud loader",
   "keywords": [
     "point",
     "cloud",
