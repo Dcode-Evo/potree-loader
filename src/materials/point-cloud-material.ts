@@ -142,15 +142,10 @@ const CLIP_MODE_DEFS = {
   [ClipMode.HIGHLIGHT_INSIDE]: 'clip_highlight_inside',
 };
 
-const INPUT_COLOR_ENCODING = {
-  [ColorEncoding.LINEAR]: 'input_color_encoding_linear',
-  [ColorEncoding.SRGB]: 'input_color_encoding_sRGB',
-};
-
-const OUTPUT_COLOR_ENCODING = {
-  [ColorEncoding.LINEAR]: 'output_color_encoding_linear',
-  [ColorEncoding.SRGB]: 'output_color_encoding_sRGB',
-};
+const COLOR_ENCODING = {
+  [ColorEncoding.LINEAR]: 'color_encoding_linear',
+  [ColorEncoding.SRGB]: 'color_encoding_sRGB',
+}
 
 export class PointCloudMaterial extends RawShaderMaterial {
   private static helperVec3 = new Vector3();
@@ -268,7 +263,6 @@ export class PointCloudMaterial extends RawShaderMaterial {
   @requiresShaderUpdate() pointOpacityType: PointOpacityType = PointOpacityType.FIXED;
   @requiresShaderUpdate() useFilterByNormal: boolean = false;
   @requiresShaderUpdate() highlightPoint: boolean = false;
-  @requiresShaderUpdate() inputColorEncoding: ColorEncoding = ColorEncoding.SRGB;
   @requiresShaderUpdate() outputColorEncoding: ColorEncoding = ColorEncoding.LINEAR;
 
   attributes = {
@@ -385,8 +379,7 @@ export class PointCloudMaterial extends RawShaderMaterial {
     define(COLOR_DEFS[this.pointColorType]);
     define(CLIP_MODE_DEFS[this.clipMode]);
     define(OPACITY_DEFS[this.pointOpacityType]);
-    define(OUTPUT_COLOR_ENCODING[this.outputColorEncoding]);
-    define(INPUT_COLOR_ENCODING[this.inputColorEncoding]);
+    define(COLOR_ENCODING[this.outputColorEncoding]);
 
     // We only perform gamma and brightness/contrast calculations per point if values are specified.
     if (
