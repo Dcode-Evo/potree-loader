@@ -1,6 +1,6 @@
 {
   "name": "@dcode-evo/potree-loader",
-  "version": "1.10.5",
+  "version": "1.10.6",
   "description": "WebGL point cloud loader",
   "keywords": [
     "point",
@@ -30,7 +30,7 @@
     "clean": "rimraf dist",
     "dev": "webpack --mode development --watch --progress --stats-children",
     "build": "npm run clean && npm run lint && webpack --mode production --config webpack.config.prod.js",
-    "example": "npm run build && webpack-dev-server --config webpack.config.example.js --mode development --progress --port 5200",
+    "example": "npm run build --stats-children && webpack-dev-server --config webpack.config.example.js --mode development --progress --port 5200",
     "lint": "tslint --project tsconfig.json",
     "prettier": "prettier --write \"**/*.js\" \"**/*.jsx\" \"**/*.tsx\" \"**/*.ts\"",
     "publish": "npm run build && node ./scripts/package.js && cd dist/ && npm publish"
