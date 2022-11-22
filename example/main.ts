@@ -1,4 +1,4 @@
-import { Vector3 } from 'three';
+import { Raycaster, Vector2, Vector3 } from 'three';
 import { PointCloudOctree } from '../dist';
 import { Viewer } from './viewer';
 
@@ -40,10 +40,37 @@ viewer
     pointCloud = pco;
     pointCloud.material.size = 1.0;
     pointCloud.material.shape = 2;
-    pointCloud.material.outputColorEncoding = 1;
+    // pointCloud.material.outputColorEncoding = 1;
     pointCloud.position.set(0, -2, 1);
     pointCloud.scale.set(.1, .1, .1);
     viewer.add(pco);
+
+    viewer.renderer.domElement.addEventListener('mousemove', (e) => {
+      const event = e as MouseEvent;
+      pointer.x = ((event as MouseEvent).clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -((event as MouseEvent).clientY / window.innerHeight) * 2 + 1;
+      const mouseOnCloud = getMousePositionOnCloud(pco);
+      if (mouseOnCloud) {
+        const { x, y, z } = mouseOnCloud;
+        console.log(x, y, z);
+      }
+    });
   })
   .catch(err => console.error(err));
+
+const pointer = new Vector2();
+
+
+const raycaster = new Raycaster();
+if (raycaster.params.Points) {
+  raycaster.params.Points.threshold = 0.1;
+}
+
+function getMousePositionOnCloud(pointCloud: PointCloudOctree): Vector3 | null {
+  raycaster.setFromCamera({ x: pointer.x, y: pointer.y }, viewer.camera);
+  // update the picking ray with the camera and pointer position
+  // get a point from the point cloud intersecting the picking ray
+  const point = pointCloud.pick(viewer.renderer, viewer.camera, raycaster.ray);
+  return point?.position || null;
+}
 

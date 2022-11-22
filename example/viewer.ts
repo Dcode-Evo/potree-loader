@@ -10,7 +10,7 @@ export class Viewer {
   /**
    * The ThreeJS renderer used to render the scene.
    */
-  private renderer = new WebGLRenderer();
+  renderer = new WebGLRenderer();
   /**
    * Our scene which will contain the point cloud.
    */
