@@ -67,7 +67,7 @@ if (raycaster.params.Points) {
 }
 
 function getMousePositionOnCloud(pointCloud: PointCloudOctree): Vector3 | null {
-  raycaster.setFromCamera({ x: pointer.x, y: pointer.y }, viewer.camera);
+  raycaster.setFromCamera(new Vector2(pointer.x, pointer.y), viewer.camera);
   // update the picking ray with the camera and pointer position
   // get a point from the point cloud intersecting the picking ray
   const point = pointCloud.pick(viewer.renderer, viewer.camera, raycaster.ray);
