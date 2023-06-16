@@ -14,7 +14,7 @@
   "module": "potree.js",
   "types": "*.d.ts",
   "peerDependencies": {
-    "three": "^0.151.3",
+    "three": "^0.152.2",
     "three-orbit-controls": "^82.1.0"
   }
 }
