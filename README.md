@@ -2,6 +2,15 @@
 
 This is a fork of [three-loader](https://github.com/pnext/three-loader), which itself is a modularized version of [Potree](http://potree.org/). This fork is updated to support the new PotreeConverter 2.0 format, updated to use WebGL2, and has the bundler changed to Vite. The API is identical to the original version. I am mainly using this for a [heritage archive project](https://thelostmetropolis.org).
 
+# Version numbering
+For better THREE js version identification we will indicate it in MINOR semver part:
+- 1.160.0 - THREE r160
+- 1.160.3 - THREE r160
+- 1.163.0 - THREE r163
+---
+- Features and fixes will increment PATCH part.  
+- MAJOR version will be incremented if there are breaking changes.  
+
 # Known issues
 - Warning about THREE being imported twice
 
