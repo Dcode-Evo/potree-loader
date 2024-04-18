@@ -35,6 +35,7 @@ import { SPECTRAL } from './gradients';
 import { generateClassificationTexture, generateDataTexture, generateGradientTexture } from './texture-generation';
 import { IClassification, IGradient, IUniform } from './types';
 import { ColorEncoding } from './color-encoding';
+import { GLSL3 } from 'three/src/constants';
 
 const VertShader = require('./shaders/pointcloud.vert').default;
 const FragShader = require('./shaders/pointcloud.frag').default;
@@ -279,7 +280,7 @@ export class PointCloudMaterial extends RawShaderMaterial {
   newFormat: boolean;
 
   constructor(parameters: Partial<IPointCloudMaterialParameters> = {}) {
-    super();
+    super({glslVersion: GLSL3});
 
     const tex = (this.visibleNodesTexture = generateDataTexture(2048, 1, new Color(0xffffff)));
     tex.minFilter = NearestFilter;
@@ -300,6 +301,7 @@ export class PointCloudMaterial extends RawShaderMaterial {
     this.defaultAttributeValues.indices = [0, 0, 0, 0];
 
     this.vertexColors = true;
+
     // throw new Error('Not implemented');
     // this.extensions.fragDepth = true;
 
@@ -418,10 +420,10 @@ export class PointCloudMaterial extends RawShaderMaterial {
     }
 
 
-    // If "#version 300 es" exists as a line in shaderSrc, remove it and add it as the first element in the parts array
+    // If "#version 300 es" exists as a line in shaderSrc, remove it because it is added by ThreeJS via
+    // RawShaderMaterial constructor parameters (ShaderMaterialParameters['glsVersion']
     const versionLine = shaderSrc.match(/^\s*#version\s+300\s+es\s*\n/);
     if (versionLine) {
-      parts.unshift(versionLine[0]);
       shaderSrc = shaderSrc.replace(versionLine[0], '');
     }
     parts.push(shaderSrc);
