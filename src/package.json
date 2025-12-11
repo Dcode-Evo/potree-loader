@@ -10,8 +10,8 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "license": "BSD-2-CLAUSE",
-  "main": "potree.js",
-  "module": "potree.js",
+  "main": "potree.d.ts",
+  "module": "potree.d.ts",
   "types": "*.d.ts",
   "peerDependencies": {
     "three": "^0.160.0",
